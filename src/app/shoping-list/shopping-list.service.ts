@@ -17,6 +17,11 @@ export class ShoppingListService {
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
 
+  onIngredientRemove() {
+    this.ingredients.pop();
+    this.ingredientsChanged.emit(this.ingredients.slice());
+  }
+
   onIngredientClear() {
     this.ingredientsChanged.emit((this.ingredients = []));
   }
