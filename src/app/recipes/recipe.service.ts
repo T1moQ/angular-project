@@ -20,11 +20,25 @@ export class RecipeService {
         new Ingredients('Salad', 1),
       ]
     ),
+    new Recipe(
+      'Falafel',
+      'Amazing',
+      'https://www.fufuskitchen.com/wp-content/uploads/2020/08/IMG_8486-scaled.webp',
+      [
+        new Ingredients('Nut', 100),
+        new Ingredients('Pita', 1),
+        new Ingredients('Salad', 1),
+      ]
+    ),
   ];
 
   getRecipe(): Recipe[] {
     return this.recipes.slice();
   }
+
+  getRecipes(index: number) { 
+   return this.recipes.slice()[index]
+  } 
 
   addIngredientToSL(ingredients: Ingredients[]) {
     this.shoppingListService.addIngredients(ingredients);

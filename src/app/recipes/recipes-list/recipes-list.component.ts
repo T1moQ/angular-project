@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Ingredients } from 'src/app/shared/ingredients';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes-list',
@@ -11,7 +12,7 @@ import { Ingredients } from 'src/app/shared/ingredients';
 export class RecipesListComponent implements OnInit {
   recipes: Recipe[];
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute) {}
 
   link: string =
     'https://www.foodandwine.com/thmb/fVmYbaQzXCz1Prx8VxrW9sMcjMU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Braciole-FT-RECIPE1122-66acf49cef0e4390bec780945709e7f3.jpg';
@@ -20,13 +21,17 @@ export class RecipesListComponent implements OnInit {
     this.recipes = this.recipeService.getRecipe();
   }
 
-  addRecipeInTheList() {
-    this.recipes.push(
-      new Recipe('Test Recipe', 'This is just a test', this.link, [
-        new Ingredients('Meat', 1),
-        new Ingredients('French Fries', 30),
-        new Ingredients('Souce', 1),
-      ])
-    );
-  }
+  // addRecipeInTheList() {
+  //   this.recipes.push(
+  //     new Recipe('Test Recipe', 'This is just a test', this.link, [
+  //       new Ingredients('Meat', 1),
+  //       new Ingredients('French Fries', 30),
+  //       new Ingredients('Souce', 1),
+  //     ])
+  //   );
+  // }
+
+  onNewRecipe() {
+    this.router.navigate(['new'], {relativeTo: this.route})
+   }
 }
